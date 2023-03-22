@@ -5,7 +5,7 @@ class LinkedList {
 
     appendNode(newNode){
         let node = this.head;
-        if(node==null){
+        if(node == null){
             this.head = newNode;
             return;
         }
@@ -79,7 +79,22 @@ class LinkedList {
         }
       
         return deletedNode;
-      }
+    }
+
+    changeNode(value, newValue) {
+        if (!this.head) {
+          return;
+        }
+      
+        let currentNode = this.head;
+      
+        while (currentNode) {
+          if (value !== undefined && currentNode.val === value) {
+            currentNode.val = newValue;
+          }
+          currentNode = currentNode.next;
+        }
+    }
 }
 
 class Node {
@@ -93,7 +108,9 @@ const myList = new LinkedList();
 myList.appendNode(new Node(8));
 myList.appendNode(new Node(5));
 myList.appendNode(new Node(40));
+myList.appendNode(new Node(5));
 console.log(myList.getNode(8));
-console.log(myList.getNodeByIndex(3));
+console.log(myList.getNodeByIndex(4));
 console.log(myList.deleteNode(5));
+console.log(myList.changeNode(40, 10));
 console.log(myList);
