@@ -1,11 +1,21 @@
+interface NodeItem {
+  value: number,
+  next: NodeItem | null
+}
+
 class LinkedList {
-    constructor(head = null) {
-        this.head = head
+    head: NodeItem | null;
+    constructor(head?: NodeItem) {
+      if (head) {
+        this.head = head;
+      } else {
+        this.head = null;
+      }
     }
 
-    appendNode(newNode){
+    appendNode(newNode: NodeItem): void{
         let node = this.head;
-        if(node == null){
+        if(node === null){
             this.head = newNode;
             return;
         }
@@ -25,12 +35,12 @@ class LinkedList {
         return count;
     }
 
-    getNode(value) {
+    getNode(value: number) {
         if (!this.head) {
           return null;
         }
       
-        let currentNode = this.head;
+        let currentNode: NodeItem | null = this.head;
         while (currentNode) {
           if (value !== undefined && currentNode.val === value) {
             return currentNode;
@@ -41,7 +51,7 @@ class LinkedList {
         return null;
       }
 
-    getNodeByIndex(index) {
+    getNodeByIndex(index: number) {
         if(index === 0) {
             return this.head;
         };
@@ -54,7 +64,7 @@ class LinkedList {
         return currentNode;
     }
 
-    deleteNode(value) {
+    deleteNode(value: number) {
         if (!this.head) {
           return null;
         }
@@ -81,12 +91,12 @@ class LinkedList {
         return deletedNode;
     }
 
-    changeNode(value, newValue) {
+    changeNode(value: number, newValue: number) {
         if (!this.head) {
           return;
         }
       
-        let currentNode = this.head;
+        let currentNode: NodeItem | null = this.head;
       
         while (currentNode) {
           if (value !== undefined && currentNode.val === value) {
@@ -97,21 +107,22 @@ class LinkedList {
     }
 }
 
-class Node {
-    constructor(val) {
+class NodeItem {
+    val: number;
+    next: NodeItem | null;
+    constructor(val: number) {
         this.val =  val;
         this.next = null;
     }
 }
 
 const myList = new LinkedList();
-console.log(myList);
-myList.appendNode(new Node(8));
-myList.appendNode(new Node(5));
-myList.appendNode(new Node(40));
-myList.appendNode(new Node(5));
+myList.appendNode(new NodeItem(8));
+myList.appendNode(new NodeItem(5));
+myList.appendNode(new NodeItem(40));
+myList.appendNode(new NodeItem(5));
 console.log(myList.getNode(8));
 console.log(myList.getNodeByIndex(4));
 console.log(myList.deleteNode(5));
-console.log(myList.changeNode(40, 10));
+myList.changeNode(40, 10);
 console.log(myList);
