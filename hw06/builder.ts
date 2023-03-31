@@ -1,25 +1,32 @@
-// interface BuildingBuilder {
-//     windows: number,
-//     doors: number,
-//     floors: number,
-// }
+interface IBuildingBuilder {
+    windows: number,
+    doors: number,
+    floors: number,
+    pool: boolean,
+    elevator: boolean,
+    setWindows(amount: number) : this,
+    setDoors(amount: number) : this,
+    setFloors(amount: number) : this,
+    setPool(): this,
+    setElevator(): this,
+}
 
 class Building {
-    constructor(params) {
-      // Проверяем, принадлежит ли полученный объект классу BuildingBuilder
-      if (params instanceof BuildingBuilder) {
-        this.extendProperties(params);
-      }
+    windows: number;
+    doors: number;
+    floors: number;
+    pool: boolean;
+    elevator: boolean;
+    constructor(windows: number, doors: number, floors: number, pool : boolean, elevator: boolean) {
+      this.windows = windows;
+      this.doors = doors;
+      this.floors = floors;
+      this.pool = pool;
+      this.elevator = elevator;
     }
-   
-    extendProperties(params) {
-      for (let param in params) {
-        this[param] = params[param];
-      }
-    }
-   }
+}
 
-class BuildingBuilder {
+class BuildingBuilder implements IBuildingBuilder {
     windows: number;
     doors: number;
     floors: number;
@@ -29,6 +36,8 @@ class BuildingBuilder {
       this.windows = 0;
       this.doors = 1;
       this.floors = 1;
+      this.pool = false;
+      this.elevator = false;
     }
    
     setWindows(amount: number) {
@@ -47,17 +56,30 @@ class BuildingBuilder {
     }
    
     setPool() {
-      this.pool = true;
+      this['pool'] = true;
       return this;
     }
    
     setElevator() {
-      this.elevator = true;
+      this['elevator'] = true;
       return this;
     }
    
     build() {
-      return new Building(this);
+      return new Building(this.windows, this.doors, this.floors, this.pool, this.elevator);
     }
    
 }
+
+class HouseWithPoolDirector {
+  static construct() {
+    return new BuildingBuilder()
+    .setDoors(10)
+    .setWindows(20)
+    .setFloors(2)
+    .setPool()
+    .build();
+  }
+}
+
+ console.log(HouseWithPoolDirector.construct());
