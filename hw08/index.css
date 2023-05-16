@@ -6,6 +6,48 @@ html, body {
     height: 100%;
 }
 
+.filters {
+    display: flex;
+    gap: 8px;
+}
+
+.head, .filters-sorts {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px;
+    border-bottom: 1px solid lightgray;
+}
+
+.head__find, .head__user-logo {
+    width: 34px;
+    height: 34px;
+    border: 1px solid lightgray;
+    border-radius: 50%;
+}
+
+.head__new-user {
+    color: #fff;
+    background-color: blue;
+    padding: 8px 16px;
+    border-radius: 34px;
+}
+
+.head__right-menu {
+    display: flex;
+    gap: 8px;
+}
+
+.head__title {
+    display: flex;
+    gap: 8px;
+}
+
+.head__title p {
+    font-weight: 500;
+    font-size: 20px;
+}
+
 .main {
     height: 100%;
     display: flex;
@@ -15,6 +57,11 @@ html, body {
     margin: auto;
     border-radius: 8px;
     overflow: hidden;
+}
+
+.main__wrap {
+    flex-grow: 1;
+    background-color: #fff;
 }
 
 .side-bar {
